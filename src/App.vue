@@ -110,7 +110,7 @@ onUpdated(() => {
       <div class="flex flex-col flex-grow h-0 p-4 overflow-auto" id="chat">
         <!-- him -->
         <div class="flex w-full mt-2 space-x-3 max-w-xs">
-          <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300"></div>
+          <img src="./assets/david.jpg" class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300" />
           <div>
             <div class="bg-gray-300 p-3 rounded-r-lg rounded-bl-lg">
               <p class="text-sm">Do you have a crypto name?</p>
@@ -130,7 +130,7 @@ onUpdated(() => {
         </div>
         <!-- him -->
         <div class="flex w-full mt-2 space-x-3 max-w-xs">
-          <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300"></div>
+          <img src="./assets/david.jpg" class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300" />
           <div>
             <div class="bg-gray-300 p-3 rounded-r-lg rounded-bl-lg">
               <p class="text-sm">Dude you gotta have a crypto name!</p>
