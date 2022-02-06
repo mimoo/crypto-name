@@ -52,33 +52,6 @@ function create(): string {
     res = res.toUpperCase();
   }
 
-  // second word
-  if (randBool()) {
-    let word = pickRandom(words);
-
-    if (randBool()) {
-      word = word.toUpperCase();
-    }
-
-    switch (randInt(5)) {
-      case 0:
-        res = word + keyword;
-        break;
-      case 1:
-        res = keyword + word;
-        break;
-      case 2:
-        res = keyword + " " + word;
-        break;
-      case 3:
-        res = word + " " + keyword;
-        break;
-      case 4:
-        res = word + "-" + keyword;
-        break;
-    }
-  }
-
   return res;
 }
 
@@ -110,7 +83,9 @@ onUpdated(() => {
       <div class="flex flex-col flex-grow h-0 p-4 overflow-auto" id="chat">
         <!-- him -->
         <div class="flex w-full mt-2 space-x-3 max-w-xs">
-          <img src="./assets/david.jpg" class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300" />
+          <a href="http://twitter.com/cryptodavidw" target="_blank">
+            <img src="./assets/david.jpg" class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300" />
+          </a>
           <div>
             <div class="bg-gray-300 p-3 rounded-r-lg rounded-bl-lg">
               <p class="text-sm">Do you have a crypto name?</p>
@@ -130,7 +105,9 @@ onUpdated(() => {
         </div>
         <!-- him -->
         <div class="flex w-full mt-2 space-x-3 max-w-xs">
-          <img src="./assets/david.jpg" class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300" />
+          <a href="http://twitter.com/cryptodavidw" target="_blank">
+            <img src="./assets/david.jpg" class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300" />
+          </a>
           <div>
             <div class="bg-gray-300 p-3 rounded-r-lg rounded-bl-lg">
               <p class="text-sm">Dude you gotta have a crypto name!</p>
