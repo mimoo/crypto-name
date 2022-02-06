@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onUpdated } from 'vue'
 import words from './assets/words.json'
 
 const count = ref(0)
@@ -82,45 +82,94 @@ function create(): string {
   return res;
 }
 
-const name = ref("What's your crypto name?");
+const names = ref(Array<string>(0));
 
-function generate() {
-  name.value = create();
+function generate(event: any) {
+  const new_name = create();
+  names.value.push(new_name);
 }
 
+// scroll when new names appear
+onUpdated(() => {
+  const chat = document.querySelector("#chat");
+  if (chat && chat.lastElementChild) {
+    console.log(chat.lastElementChild);
+    chat.lastElementChild.scrollIntoView();
+  }
+})
 </script>
 
 <template>
-  <div class="flex h-screen">
-    <div class="m-auto">
-      <!-- main content -->
-      <div class="bg-white dark:bg-gray-800">
-        <div class="sm:px-6 lg:py-16 lg:px-8 z-20">
-          <h2 class="text-3xl font-extrabold text-black dark:text-white sm:text-4xl">
-            <span class="block">{{ name }}</span>
-          </h2>
-          <div class="lg:mt-0 lg:flex-shrink-0">
-            <div class="mt-12 inline-flex rounded-md shadow">
-              <button
-                @click="generate"
-                type="button"
-                class="py-4 px-6 bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
-              >Generate</button>
+  <div
+    class="flex flex-col items-center justify-center w-screen min-h-screen bg-gray-100 text-gray-800 p-10"
+  >
+    <!-- Component Start -->
+    <div
+      class="flex flex-col flex-grow w-full max-w-xl bg-white shadow-xl rounded-lg overflow-hidden"
+    >
+      <div class="flex flex-col flex-grow h-0 p-4 overflow-auto" id="chat">
+        <!-- him -->
+        <div class="flex w-full mt-2 space-x-3 max-w-xs">
+          <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300"></div>
+          <div>
+            <div class="bg-gray-300 p-3 rounded-r-lg rounded-bl-lg">
+              <p class="text-sm">Do you have a crypto name?</p>
             </div>
+            <span class="text-xs text-gray-500 leading-none">2 min ago</span>
           </div>
         </div>
+        <!-- me -->
+        <div class="flex w-full mt-2 space-x-3 max-w-xs ml-auto justify-end">
+          <div>
+            <div class="bg-blue-600 text-white p-3 rounded-l-lg rounded-br-lg">
+              <p class="text-sm">What's that?</p>
+            </div>
+            <span class="text-xs text-gray-500 leading-none">2 min ago</span>
+          </div>
+          <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300"></div>
+        </div>
+        <!-- him -->
+        <div class="flex w-full mt-2 space-x-3 max-w-xs">
+          <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300"></div>
+          <div>
+            <div class="bg-gray-300 p-3 rounded-r-lg rounded-bl-lg">
+              <p class="text-sm">Dude you gotta have a crypto name!</p>
+            </div>
+            <span class="text-xs text-gray-500 leading-none">2 min ago</span>
+          </div>
+        </div>
+        <!-- me -->
+        <div class="flex w-full mt-2 space-x-3 max-w-xs ml-auto justify-end">
+          <div>
+            <div class="bg-blue-600 text-white p-3 rounded-l-lg rounded-br-lg">
+              <p class="text-sm">Alright alright, here's my crypto name.</p>
+            </div>
+            <span class="text-xs text-gray-500 leading-none">2 min ago</span>
+          </div>
+          <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300"></div>
+        </div>
+
+        <!-- me -->
+        <div class="flex w-full mt-2 space-x-3 max-w-xs ml-auto justify-end" v-for="name in names">
+          <div>
+            <div class="bg-blue-600 text-white p-3 rounded-l-lg rounded-br-lg">
+              <p class="text-sm">{{ name }}</p>
+            </div>
+            <span class="text-xs text-gray-500 leading-none">2 min ago</span>
+          </div>
+          <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300"></div>
+        </div>
+
+        <!-- end -->
+      </div>
+
+      <div class="bg-gray-300 p-4">
+        <button
+          @click="generate"
+          class="flex items-center h-10 w-full rounded px-3 text-sm"
+        >Generate your crypto name…</button>
       </div>
     </div>
+    <!-- Component End  -->
   </div>
 </template>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
